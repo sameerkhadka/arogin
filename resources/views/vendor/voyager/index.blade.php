@@ -1,6 +1,10 @@
 @extends('voyager::master')
 
 @section('content')
+@php
+header("Location:" .env('APP_URL'). "/admin/homepages/1/edit");
+exit();
+@endphp
     <div class="page-content">
         @include('voyager::alerts')
         @include('voyager::dimmers')
