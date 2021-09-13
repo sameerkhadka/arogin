@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('meta')
 <meta charset="UTF-8">
-<meta name="keywords" content="">
-<meta name="description" content="">
+<meta name="keywords" content="{{setting('faqs.key')}}">
+<meta name="description" content="{{setting('faqs.description')}}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 @endsection
 @section('body')
-    <section class="inner-banner" style="background: url(./images/faq.jpg);">
+    <section class="inner-banner" style="background: url({{Voyager::image(setting('faqs.image'))}});">
         <div class="container">
             <div class="breadcrumbs">
                 <ul>
