@@ -202,7 +202,7 @@
                         @foreach($careservices as $careservice)
                             <div class="item">
                                 <div class="ser-slider-wrap">
-                                    <img src="./images/1.jpg" alt="">
+                                    <img src="{{Voyager::image($careservice->banner_image)}}" alt="{{$careservice->image_alt}}">
 
                                     <div class="ser-slider-text">
                                         <h5>{{$careservice->title}}</h5>
@@ -214,7 +214,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="item">
+                        {{-- <div class="item">
                             <div class="ser-slider-wrap">
                                 <img src="./images/arogin.jpg" alt="">
 
@@ -227,7 +227,7 @@
                                     <a href="">Read More</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
