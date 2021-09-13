@@ -199,21 +199,21 @@
 
                 <div class="col-md-8 offset-md-2">
                     <div class="services-slider owl-carousel">
-                        <div class="item">
-                            <div class="ser-slider-wrap">
-                                <img src="./images/1.jpg" alt="">
+                        @foreach($careservices as $careservice)
+                            <div class="item">
+                                <div class="ser-slider-wrap">
+                                    <img src="./images/1.jpg" alt="">
 
-                                <div class="ser-slider-text">
-                                    <h5>24/7 Nursing care</h5>
-                                    <p>The patients who need close monitoring by a skilled &amp; qualified nursing care team around the clock will be
-                                        facilitated with 24/7 Nursing care.
-                                    </p>
+                                    <div class="ser-slider-text">
+                                        <h5>{{$careservice->title}}</h5>
+                                        <p>{!! \Illuminate\Support\Str::limit($careservice->content, 100) !!}
+                                        </p>
 
-                                    <a href="">Read More</a>
+                                        <a href="{{route('services', $careservice->slug)}}">Read More</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
+                        @endforeach
                         <div class="item">
                             <div class="ser-slider-wrap">
                                 <img src="./images/arogin.jpg" alt="">

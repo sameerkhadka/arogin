@@ -41,9 +41,9 @@
                         </div>
 
                         <ul>
-                            @php $services = \App\CareService::all(); @endphp
+                            @php $services = \App\CareService::where('title', '!=', $item->title)->get(); @endphp
                             @foreach($services as $service)
-                            <li><a href="{{route('services', $service->slug)}}"> {{$service->title}} <img src="{{asset('images/icon/star-blue.svg')}}" alt=""></a></li>
+                                <li><a href="{{route('services', $service->slug)}}"> {{$service->title}} <img src="{{asset('images/icon/star-blue.svg')}}" alt=""></a></li>
                             @endforeach
                             {{-- <li><a href=""> Stroke Care & Rehabilitation <img src="./images/icon/star-blue.svg" alt=""></a></li>
                             <li><a href=""> Dementia & Alzheimer’s Care <img src="./images/icon/star-blue.svg" alt=""></a></li>
@@ -185,127 +185,128 @@
     </section>
 
     
+    @php $faqs = \App\Faq::where('type','careservices')->where('type_id',$item->id)->orderBy('order','asc')->get(); @endphp
+    @if(count($faqs) > 0)
+        <section class="faq general-faq">
+            <div class="container">
 
-    <section class="faq general-faq">
-        <div class="container">
-
-            @php $faq_img = \App\Homepage::where('id', '1')->first(); @endphp
-            
-            <div class="row align-item-center">
-                <div class="col-md-5">
-                    <div class="faq-img">
-                        <img src="{{Voyager::image($faq_img->faq_image)}}" alt="{{$faq_img->faq_image_alt}}">
-                    </div>
-                </div>
-
-                <div class="col-md-7">
-                    <div class="sec-head">
-                      
-                        <h4>
-                            FAQS 
-                        </h4>
+                @php $faq_img = \App\Homepage::where('id', '1')->first(); @endphp
+                
+                <div class="row align-item-center">
+                    <div class="col-md-5">
+                        <div class="faq-img">
+                            <img src="{{Voyager::image($faq_img->faq_image)}}" alt="{{$faq_img->faq_image_alt}}">
+                        </div>
                     </div>
 
-                    <div class="accordion" id="accordionExample">
-                        @php $faqs = \App\Faq::where('type','careservices')->where('type_id',$item->id)->orderBy('order','asc')->get(); @endphp
-                        @foreach($faqs as $faq)
-                        <div class="card">
-                            <div class="card-header" id="heading{{$loop->iteration}}">
-                           
-                                    <button class="collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$loop->iteration}}" aria-expanded="{{$loop->first ? "true" : "false"}}" aria-controls="collapse{{$loop->iteration}}">
-                                        <h3 class="faq-title">{{$faq->question}}</h3>
-                                    </button>
-                     
-                            </div>
-                      
-                            <div id="collapse{{$loop->iteration}}" class="collapse {{$loop->first ? "show" : ""}}" aria-labelledby="heading{{$loop->iteration}}" data-parent="#accordionExample">
-                                <div class="card-body">
-                                    {!!$faq->answer!!}
+                    <div class="col-md-7">
+                        <div class="sec-head">
+                        
+                            <h4>
+                                FAQS 
+                            </h4>
+                        </div>
+
+                        <div class="accordion" id="accordionExample">
+                            @foreach($faqs as $faq)
+                            <div class="card">
+                                <div class="card-header" id="heading{{$loop->iteration}}">
+                            
+                                        <button class="collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$loop->iteration}}" aria-expanded="{{$loop->first ? "true" : "false"}}" aria-controls="collapse{{$loop->iteration}}">
+                                            <h3 class="faq-title">{{$faq->question}}</h3>
+                                        </button>
+                        
+                                </div>
+                        
+                                <div id="collapse{{$loop->iteration}}" class="collapse {{$loop->first ? "show" : ""}}" aria-labelledby="heading{{$loop->iteration}}" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        {!!$faq->answer!!}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        @endforeach
+                            @endforeach
 
-                        {{-- <div class="card">
-                            <div class="card-header" id="headingOne">
-                           
-                                    <button class="collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        <h3 class="faq-title">When Are Visiting Hours?</h3>
-                                    </button>
-                     
+                            {{-- <div class="card">
+                                <div class="card-header" id="headingOne">
+                            
+                                        <button class="collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <h3 class="faq-title">When Are Visiting Hours?</h3>
+                                        </button>
+                        
+                                </div>
+                        
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <p>
+                                            We strive to accommodate the needs of family and friends of patients as much as possible and our visiting hours are also flexible .
+                                    
+            
+                                            We have no restrictions for visiting your loved ones at Arogin care home  as we believe that patients benefit from regular visits from friendly faces.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                      
-                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                
+                                <button class=" collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <h1 class="faq-title">How Long Will I Need To Stay In care home?</h1>
+                                </button>
+                            
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                <p>
+                                    The length of stay varies and depends on the severity or on the basis of stroke assessment and rehabilitation it varies. The patient will be cared in the best surroundings and by a compassionate, highly trained team of professionals.
+                                </p>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                
+                                    <button class=" collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <h4 class="faq-title">How Long Will I Need To Stay In care home?</h4>
+                                    </button>
+                            
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <p>
-                                        We strive to accommodate the needs of family and friends of patients as much as possible and our visiting hours are also flexible .
-                                   
-        
-                                        We have no restrictions for visiting your loved ones at Arogin care home  as we believe that patients benefit from regular visits from friendly faces.
+                                    The length of stay varies and depends on the severity or on the basis of stroke assessment and rehabilitation it varies. The patient will be cared in the best surroundings and by a compassionate, highly trained team of professionals.
                                     </p>
                                 </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="headingTwo">
+
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                
+                                    <button class=" collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    <h6 class="faq-title">How Long Will I Need To Stay In care home?</h6>
+                                    </button>
                             
-                              <button class=" collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h1 class="faq-title">How Long Will I Need To Stay In care home?</h1>
-                              </button>
-                         
-                          </div>
-                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                            <div class="card-body">
-                              <p>
-                                The length of stay varies and depends on the severity or on the basis of stroke assessment and rehabilitation it varies. The patient will be cared in the best surroundings and by a compassionate, highly trained team of professionals.
-                              </p>
-                            </div>
-                          </div>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <p>
+                                    The length of stay varies and depends on the severity or on the basis of stroke assessment and rehabilitation it varies. The patient will be cared in the best surroundings and by a compassionate, highly trained team of professionals.
+                                    </p>
+                                </div>
+                                </div>
+                            </div> --}}
+
+                        
+            
+                            
+                            
                         </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                              
-                                <button class=" collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                  <h4 class="faq-title">How Long Will I Need To Stay In care home?</h4>
-                                </button>
-                           
-                            </div>
-                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                              <div class="card-body">
-                                <p>
-                                  The length of stay varies and depends on the severity or on the basis of stroke assessment and rehabilitation it varies. The patient will be cared in the best surroundings and by a compassionate, highly trained team of professionals.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="card">
-                            <div class="card-header" id="headingFour">
-                              
-                                <button class=" collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                  <h6 class="faq-title">How Long Will I Need To Stay In care home?</h6>
-                                </button>
-                           
-                            </div>
-                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                              <div class="card-body">
-                                <p>
-                                  The length of stay varies and depends on the severity or on the basis of stroke assessment and rehabilitation it varies. The patient will be cared in the best surroundings and by a compassionate, highly trained team of professionals.
-                                </p>
-                              </div>
-                            </div>
-                          </div> --}}
-
-                      
-        
-                        
-                        
                     </div>
+
                 </div>
 
             </div>
-
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection

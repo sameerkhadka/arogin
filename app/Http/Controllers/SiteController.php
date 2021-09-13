@@ -32,7 +32,7 @@ class SiteController extends Controller
 {
     public function index()
     {
-        $items = Slider::all();
+        $items = Slider::orderBy('order','asc')->get();
         $homepage = Homepage::where('id','1')->first();
         $testimonials = Testimonial::orderBy('order', 'asc')->paginate(5);
         $services = Service::orderBy('order','asc')->get();
@@ -42,7 +42,8 @@ class SiteController extends Controller
         $features = Feature::orderBy('created_at', 'desc')->get();
         $faqs = Faq::where('type','homepage')->orderBy('order','asc')->get();
         $popups = Popup::where('status',1)->orderBy('order', 'desc')->get();
-        return view('index', compact('items','homepage','testimonials','services','story','events','blogs','features','faqs','popups'));
+        $careservices = CareService::orderBy('created_at','asc')->get();
+        return view('index', compact('items','homepage','testimonials','services','story','events','blogs','features','faqs','popups','careservices'));
     }
 
     public function blog()
