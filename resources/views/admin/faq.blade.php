@@ -47,6 +47,12 @@
 </style>
 @endsection
 @section('content')
+@if(Request::segment(2) == "main")
+    <div class="col-md-12">
+        <br>
+        <input type="text" class="form-control" value="Meta key, Description and Banner Image of this pages can be configured from settings" readonly>
+    </div>
+@endif
 <div class="page-content edit-add container-fluid" id="app">
     <div class="panel panel-bordered">
         <vue-draggable v-model="info" v-on:start="drag=true" v-on:end="drag=false" handle=".handle" v-bind="dragOptions">
