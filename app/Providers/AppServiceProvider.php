@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $careservices = CareService::where('id', '!=', 9)->get();
-        View::share(compact('careservices'));
+        $nav_careservices = CareService::where('id', '!=', 9)->get();
+        View::share(compact('nav_careservices'));
     }
 }

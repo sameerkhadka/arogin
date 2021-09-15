@@ -66,7 +66,7 @@
 
                                 <div class="sub-menu">
                                     <ul>
-                                        @foreach($careservices as $careservice)
+                                        @foreach($nav_careservices as $careservice)
                                             <li><a href="{{route('services', $careservice->slug)}}">{{$careservice->title}}</a></li>
                                         @endforeach
                                         {{-- <li><a href="stroke-care.html">Stroke Care & Rehabilitation</a></li>
