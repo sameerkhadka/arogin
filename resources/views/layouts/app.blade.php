@@ -26,7 +26,11 @@
     
 </head>
 <body>
-    
+    @if ($errors->has('g-recaptcha-response'))
+        <span class="help-block">
+            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+        </span>
+    @endif
     <header id="header">
         <div class="top-header">
             <div class="container">

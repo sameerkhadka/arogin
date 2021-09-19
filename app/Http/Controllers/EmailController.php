@@ -9,6 +9,10 @@ use Mail;
 class EmailController extends Controller
 {
     public function send(Request $request){
+        $validate = $request->validate([
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
+
         if($request->name)
         {
             $data=[

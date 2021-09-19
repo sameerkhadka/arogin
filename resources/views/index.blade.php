@@ -653,7 +653,10 @@
                                         <textarea name='message' required></textarea>
                                     </div>
                                 </div>
-
+                                <div class="col-md-6">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                </div>
                                 <div class="col-md-12">
                                     <div class="sc-form">
                                         <button>Send Message</button>
