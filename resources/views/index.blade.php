@@ -662,7 +662,7 @@
                                     {!! NoCaptcha::renderJs() !!}
                                     {!! NoCaptcha::display() !!}
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="sc-form">
                                         <button>Send Message</button>
                                     </div>
