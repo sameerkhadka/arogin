@@ -8,10 +8,15 @@
 @section('toastr')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script> 
+        @if($errors->has('g-recaptcha-response'))
+            toastr.error('Captcha is required');
+        @endif
+    </script> 
     <script>  
-    @if(Session::has('success'))  
-            toastr.success("{{ Session('success') }}");  
-    @endif  
+        @if(Session::has('success'))  
+                toastr.success("{{ Session('success') }}");  
+        @endif  
     </script>  
 @endsection
 @section('body')
@@ -103,9 +108,12 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="recaptcha" id="recaptcha">
+                        <div class="col-md-6">
+                            {!! NoCaptcha::renderJs() !!}
+                            {!! NoCaptcha::display() !!}
+                        </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="cf-card mb-0">
                                 <input type="submit" value="Send Message" class="btn-submit">
                             </div>
