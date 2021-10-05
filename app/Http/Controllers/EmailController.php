@@ -24,7 +24,7 @@ class EmailController extends Controller
 
             Mail::send('emails.appointment', $data, function($message) use ($data){
                 $message->from($data['form_email'],$data['form_name']);
-                $message->to('noreply@arogincarehome.com');
+                $message->to('sameerkhadka3@gmail.com');
                 $message->subject('Message From Appointment Booking Form');
             });  
         }
@@ -39,7 +39,7 @@ class EmailController extends Controller
 
             Mail::send('emails.contact', $data, function($message) use ($data){
                 $message->from($data['form_email'],$data['form_first_name']);
-                $message->to('noreply@arogincarehome.com');
+                $message->to('sameerkhadka3@gmail.com');
                 $message->subject('Message From Contact Form');
             });    
         }
