@@ -226,7 +226,7 @@
                                     <div class="card-header" id="heading{{$loop->iteration}}">
                                 
                                             <button class="collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$loop->iteration}}" aria-expanded="{{$loop->first ? "true" : "false"}}" aria-controls="collapse{{$loop->iteration}}">
-                                                <h3 class="faq-title">{{$faq->question}}</h3>
+                                                <h3 class="faq-title">{!!$faq->question!!}</h3>
                                             </button>
                             
                                     </div>

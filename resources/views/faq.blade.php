@@ -28,7 +28,7 @@
                     <div class="card-header" id="headingOne">
                    
                             <button class="collapsed" type="button" data-toggle="collapse" data-target="#collapse{{$loop->iteration}}" aria-expanded="false" aria-controls="collapse{{$loop->iteration}}">
-                                {{$faq->question}}
+                                {!!$faq->question!!}
                             </button>
              
                     </div>

@@ -62,7 +62,8 @@
                     <div class="row">
                         <div class="form-group  col-md-12 ">
                             <label class="control-label" for="name">Question No. @{{index + 1}}</label>
-                            <input required type="text" class="form-control" v-model="item.question">
+                            <vue-ckeditor :editor="editor" v-model="item.question" :config="editorConfig">
+                            </vue-ckeditor>
                         </div>
                         <div class="form-group  col-md-12 ">
                             <label class="control-label" for="name">Answer</label>
