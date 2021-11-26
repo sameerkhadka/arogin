@@ -39,7 +39,7 @@ class SiteController extends Controller
         $story =  Story::where('id','1')->first();
         $events = Event::orderBy('created_at', 'desc')->get();
         $blogs = Blog::orderBy('created_at', 'desc')->paginate(3);
-        $features = Feature::orderBy('created_at', 'desc')->get();
+        $features = Feature::orderBy('order', 'ASC')->get();
         $faqs = Faq::where('type','homepage')->orderBy('order','asc')->get();
         $popups = Popup::where('status',1)->orderBy('order', 'desc')->get();
         $careservices = CareService::orderBy('created_at','asc')->get();
